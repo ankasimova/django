@@ -1,4 +1,6 @@
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound
+from django.shortcuts import render
+
 
 def index(request):
     host = request.META["HTTP_HOST"]
@@ -63,3 +65,27 @@ def age(request, age):
         return HttpResponseForbidden("Лицам до 18 лет доступ запрещен")
     else:
         return HttpResponse(f"Доступ разрешен. Возраст: {age}")
+
+
+#Установка куки
+def set(request):
+    username = request.GET.get("username", "Undefined")
+    response = HttpResponse(f'Hello {username}')
+    response.set_cookie("username", username, httponly=True, secure=True)
+    return response
+
+
+#Получение куки
+def get(request):
+    username = request.COOKIES['username']
+    return HttpResponse(f'Hello {username}')
+
+
+#Рендер с помощью templates, передача данных в шаблоны в виде переменных
+def index(request):
+    header = "Информация о пользователе"     # простой текст
+    langs = ["en", "ru", "kk"]               # список
+    user = {"name": "Lika", "age": "27"}     # словарь
+    address = ("Auezov", 212, 132)           # кортеж
+    data = {"header": header, "langs": langs, "user": user, "address": address}
+    return render(request, "index.html", context=data)
