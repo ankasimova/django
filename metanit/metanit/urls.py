@@ -31,13 +31,14 @@ urlpatterns = [
     path('user/<str:name>/<int:age>', views.user),
     re_path('^contact', views.contact),
     re_path('^main', views.main),
-    path('', views.index, name='home'),
+    # path('', views.index, name='home'),
     path('products/', include(product_patterns)),
     path('products/<int:id>/', include(product_patterns)),
     path('aboutuser/', views.aboutuser),
-    path("index/<int:id>", views.index),
+    # path("index/<int:id>", views.index),
     path("age/<int:age>", views.age),
     path('set/', views.set),
     path('get', views.get),
-    path('', views.index)
+    # path('', views.index),
+    path('', views.static)
 ]

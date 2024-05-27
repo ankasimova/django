@@ -82,10 +82,13 @@ def get(request):
 
 
 #Рендер с помощью templates, передача данных в шаблоны в виде переменных
-def index(request):
-    header = "Информация о пользователе"     # простой текст
-    langs = ["en", "ru", "kk"]               # список
-    user = {"name": "Lika", "age": "27"}     # словарь
-    address = ("Auezov", 212, 132)           # кортеж
-    data = {"header": header, "langs": langs, "user": user, "address": address}
-    return render(request, "index.html", context=data)
+# def index(request):
+#     header = "Информация о пользователе"     # простой текст
+#     langs = ["en", "ru", "kk"]               # список
+#     user = {"name": "Lika", "age": "27"}     # словарь
+#     address = ("Auezov", 212, 132)           # кортеж
+#     data = {"header": header, "langs": langs, "user": user, "address": address}
+#     return render(request, "index.html", context=data)
+
+def static(request):
+    return render(request, "static.html")
