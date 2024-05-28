@@ -17,6 +17,8 @@ Including another URLconf
 
 from django.urls import path, re_path, include
 from hello import views
+from django.views.generic import TemplateView
+
 
 product_patterns = [
     path('', views.products),
@@ -31,14 +33,17 @@ urlpatterns = [
     path('user/<str:name>/<int:age>', views.user),
     re_path('^contact', views.contact),
     re_path('^main', views.main),
-    # path('', views.index, name='home'),
+    path('', views.index, name='home'),
     path('products/', include(product_patterns)),
     path('products/<int:id>/', include(product_patterns)),
     path('aboutuser/', views.aboutuser),
-    # path("index/<int:id>", views.index),
+    path("index/<int:id>", views.index),
     path("age/<int:age>", views.age),
     path('set/', views.set),
     path('get', views.get),
-    # path('', views.index),
-    path('', views.static)
+    path('/', views.index),
+    path('image', views.static),
+    path("about/", TemplateView.as_view(template_name="about.html", extra_context={"header": "О сайте Django"})),
+    path("contact/", TemplateView.as_view(template_name="contact.html")),
+
 ]
