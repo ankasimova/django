@@ -37,13 +37,17 @@ urlpatterns = [
     path('products/', include(product_patterns)),
     path('products/<int:id>/', include(product_patterns)),
     path('aboutuser/', views.aboutuser),
-    path("index/<int:id>", views.index),
+    #path("index/<int:id>", views.index),
     path("age/<int:age>", views.age),
-    path('set/', views.set),
-    path('get', views.get),
-    path('/', views.index),
+    #path('set/', views.set),
+    #path('get', views.get),
+    path('', views.index),
     path('image', views.static),
     path("about/", TemplateView.as_view(template_name="about.html", extra_context={"header": "О сайте Django"})),
-    path("contact/", TemplateView.as_view(template_name="contact.html")),
-
+    path("contact", views.contact),
+    path("base", views.base),
+    path("ind", views.ind),
+    path("userform", views.userform),
+    path("postuser/", views.postuser),
+    path("forms", views.userindex)
 ]
